@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -53,9 +55,9 @@ public class Workstation implements Serializable {
     @Lob
     @Column(name = "mac_address")
     private byte[] macAddress;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "workstationId")
-    private Collection<WorkstationAdditionalData> workstationAdditionalDataCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "workstationId")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "workstationId")
+    private WorkstationAdditionalData workstationAdditionalData;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "workstationId")
     private Collection<Window> windowCollection;
 
     public Workstation() {
@@ -110,13 +112,12 @@ public class Workstation implements Serializable {
         this.macAddress = macAddress;
     }
 
-    @XmlTransient
-    public Collection<WorkstationAdditionalData> getWorkstationAdditionalDataCollection() {
-        return workstationAdditionalDataCollection;
+    public WorkstationAdditionalData getWorkstationAdditionalData() {
+        return workstationAdditionalData;
     }
 
-    public void setWorkstationAdditionalDataCollection(Collection<WorkstationAdditionalData> workstationAdditionalDataCollection) {
-        this.workstationAdditionalDataCollection = workstationAdditionalDataCollection;
+    public void setWorkstationAdditionalData(WorkstationAdditionalData workstationAdditionalData) {
+        this.workstationAdditionalData = workstationAdditionalData;
     }
 
     @XmlTransient

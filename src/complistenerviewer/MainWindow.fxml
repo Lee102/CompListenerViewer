@@ -2,29 +2,38 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complistenerviewer.MainWindowController">
    <children>
       <TableView fx:id="workstationTableView" layoutX="67.0" layoutY="54.0" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="365.0">
         <columns>
-          <TableColumn fx:id="computerName" prefWidth="110.0" text="Computer name" />
-            <TableColumn fx:id="userDomain" prefWidth="90.0" text="User domain" />
-            <TableColumn fx:id="userName" prefWidth="75.0" text="User name" />
-            <TableColumn fx:id="macAddress" prefWidth="90.0" text="MAC address" />
+          <TableColumn fx:id="computerNameColumn" prefWidth="110.0" text="Computer name" />
+            <TableColumn fx:id="userDomainColumn" prefWidth="90.0" text="User domain" />
+            <TableColumn fx:id="userNameColumn" prefWidth="75.0" text="User name" />
+            <TableColumn fx:id="macAddressColumn" prefWidth="90.0" text="MAC address" />
         </columns>
       </TableView>
-      <TableView fx:id="wokstationAdditionalDataTableView" layoutX="67.0" layoutY="273.0" prefHeight="50.0" prefWidth="535.0">
+      <TableView fx:id="wokstationAdditionalDataTableView" layoutX="67.0" layoutY="273.0" prefHeight="79.0" prefWidth="535.0">
         <columns>
-          <TableColumn fx:id="osVersion" prefWidth="70.0" text="OS version" />
-          <TableColumn fx:id="osArch" prefWidth="55.0" text="OS arch" />
-            <TableColumn fx:id="javaVersion" text="Java version" />
-            <TableColumn fx:id="procId" prefWidth="55.0" text="CPU ID" />
-            <TableColumn fx:id="procArch" prefWidth="65.0" text="CPU arch" />
-            <TableColumn fx:id="procCores" prefWidth="70.0" text="CPU cores" />
-            <TableColumn fx:id="ramSize" prefWidth="70.0" text="RAM size" />
-            <TableColumn fx:id="diskSize" prefWidth="70.0" text="Disk size" />
+          <TableColumn fx:id="osVersionColumn" prefWidth="70.0" text="OS version" />
+          <TableColumn fx:id="osArchColumn" prefWidth="55.0" text="OS arch" />
+            <TableColumn fx:id="javaVersionColumn" text="Java version" />
+            <TableColumn fx:id="procIdColumn" prefWidth="55.0" text="CPU ID" />
+            <TableColumn fx:id="procArchColumn" prefWidth="65.0" text="CPU arch" />
+            <TableColumn fx:id="procCoresColumn" prefWidth="70.0" text="CPU cores" />
+            <TableColumn fx:id="ramSizeColumn" prefWidth="70.0" text="RAM size" />
+            <TableColumn fx:id="diskSizeColumn" prefWidth="70.0" text="Disk size" />
         </columns>
       </TableView>
+      <TableView fx:id="windowTableView" layoutX="67.0" layoutY="389.0" onMouseClicked="#windowTableViewClick" prefHeight="200.0" prefWidth="477.0">
+        <columns>
+          <TableColumn fx:id="windowTitleColumn" prefWidth="250.0" text="Window title" />
+          <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="150.0" text="Start time" />
+            <TableColumn fx:id="firstWindowColumn" prefWidth="75.0" text="First" />
+        </columns>
+      </TableView>
+      <ImageView fx:id="printScreen" fitHeight="410.0" fitWidth="535.0" layoutX="626.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
