@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import entity.WorkstationAdditionalData;
+import java.util.List;
+import org.hibernate.Query;
+
+/**
+ *
+ * @author Łukasz Wojtas
+ */
+public class WorkstationAdditionalDataDAO extends DAO implements WorkstationAdditionalDataDAOInterface {
+
+    @Override
+    public List<WorkstationAdditionalData> getAll() {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData");
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public void delete(WorkstationAdditionalData workstationAdditionalData) {
+        getSession().delete(workstationAdditionalData);
+    }
+
+    @Override
+    public WorkstationAdditionalData findById(Integer id) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE id=:id").setParameter("id", id);
+        WorkstationAdditionalData workstationAdditionalData = (WorkstationAdditionalData) query.uniqueResult();
+        return workstationAdditionalData;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByOsVersion(String osVersion) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE os_version=:osVersion").setParameter("osVersion", osVersion);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByOsArch(String osArch) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE os_arch=:osArch").setParameter("osArch", osArch);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByJavaVersion(String javaVersion) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE java_version=:javaVersion").setParameter("javaVersion", javaVersion);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByProcId(String procId) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE proc_id=:procId").setParameter("procId", procId);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByProcArch(String procArch) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE proc_arch=:procArch").setParameter("procArch", procArch);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByProcCores(Integer procCores) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE proc_cores=:procCores").setParameter("procCores", procCores);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByRamSize(Integer ramSize) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE ram_size=:ramSize").setParameter("ramSize", ramSize);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+    @Override
+    public List<WorkstationAdditionalData> findByDiskSize(Integer diskSize) {
+        Query query = getSession().createQuery("FROM WorkstationAdditionalData WHERE disk_size=:diskSize").setParameter("diskSize", diskSize);
+        List<WorkstationAdditionalData> workstationAdditionalDataList = query.list();
+        return workstationAdditionalDataList;
+    }
+
+}
