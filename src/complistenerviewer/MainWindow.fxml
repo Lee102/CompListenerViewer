@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complistenerviewer.MainWindowController">
+   <children>
+      <TableView fx:id="workstationTableView" layoutX="67.0" layoutY="54.0" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="365.0">
+        <columns>
+          <TableColumn fx:id="computerName" prefWidth="110.0" text="Computer name" />
+            <TableColumn fx:id="userDomain" prefWidth="90.0" text="User domain" />
+            <TableColumn fx:id="userName" prefWidth="75.0" text="User name" />
+            <TableColumn fx:id="macAddress" prefWidth="90.0" text="MAC address" />
+        </columns>
+      </TableView>
+      <TableView fx:id="wokstationAdditionalDataTableView" layoutX="67.0" layoutY="273.0" prefHeight="50.0" prefWidth="535.0">
+        <columns>
+          <TableColumn fx:id="osVersion" prefWidth="70.0" text="OS version" />
+          <TableColumn fx:id="osArch" prefWidth="55.0" text="OS arch" />
+            <TableColumn fx:id="javaVersion" text="Java version" />
+            <TableColumn fx:id="procId" prefWidth="55.0" text="CPU ID" />
+            <TableColumn fx:id="procArch" prefWidth="65.0" text="CPU arch" />
+            <TableColumn fx:id="procCores" prefWidth="70.0" text="CPU cores" />
+            <TableColumn fx:id="ramSize" prefWidth="70.0" text="RAM size" />
+            <TableColumn fx:id="diskSize" prefWidth="70.0" text="Disk size" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
