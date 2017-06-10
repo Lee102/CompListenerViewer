@@ -5,23 +5,39 @@
  */
 package complistenerviewer;
 
+import entity.KeyboardClick;
+import entity.MouseClick;
+import entity.MouseScroll;
 import entity.Window;
 import entity.Workstation;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javax.imageio.ImageIO;
 import service.WorkstationService;
 
 /**
@@ -89,8 +105,42 @@ public class MainWindowController implements Initializable {
                 observableList1.add(window);
             });
             windowTableView.setItems(observableList1);
+
+            a.setCellValueFactory(new PropertyValueFactory<>("windowTitle"));
+            b.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+
+            TreeItem<Window> root = new TreeItem<>(new Window()), first = null;
+
+            for (Window window : selectedWorkstation.getWindowCollection()) {
+                TreeItem<Window> item = new TreeItem<>(window);
+                if (window.getFirstWindow() == 1) {
+                    first = item;
+                    root.getChildren().add(first);
+                } else if (first != null) {
+                    first.getChildren().add(item);
+                }
+            }
+            /*selectedWorkstation.getWindowCollection().forEach((window) -> {
+                TreeItem<Window> item = new TreeItem<>(window);
+                if (window.getFirstWindow()==1) {
+                    upper=item;
+                    root.getChildren().add(upper);
+                } else {
+                    upper.getChildren().add(item);
+                }
+            });*/
+            //System.out.println("asdf");
+            //ttv.setRoot(root);
+            //ttv.setRoot(root);
+            //ttv= new TreeTableView<>(root);
         }
     }
+
+    @FXML
+    private TreeTableView ttv;
+
+    @FXML
+    private TreeTableColumn a, b;
 
     @FXML
     private void windowTableViewClick(MouseEvent event) {
@@ -131,12 +181,85 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void saveDataAsMenuItemClick(ActionEvent event) {
-        System.out.println("saveDataAsMenuItemClick");
+        if (windowTableView.getSelectionModel().getSelectedItem() != null) {
+            Window selectedWindow = (Window) windowTableView.getSelectionModel().getSelectedItem();
+            String initialFileName = new String();
+            initialFileName += "CompListener " + selectedWindow.getWindowTitle() + " " + selectedWindow.getStartDate().getDate() + "-" + selectedWindow.getStartDate().getMonth() + "-" + (selectedWindow.getStartDate().getYear() + 1900) + " " + selectedWindow.getStartDate().getHours() + "-" + selectedWindow.getStartDate().getMinutes() + "-" + selectedWindow.getStartDate().getSeconds();
+
+            FileChooser fileChooser = new FileChooser();
+
+            fileChooser.setTitle("Save data as:");
+            fileChooser.setInitialFileName(initialFileName);
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+            FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("TXT", "*.txt");
+            fileChooser.getExtensionFilters().add(fileExtensions);
+
+            File file = fileChooser.showSaveDialog(CompListenerViewer.getStage());
+            System.out.println(fileChooser.getSelectedExtensionFilter().getDescription() + " " + fileChooser.getSelectedExtensionFilter().toString());
+            if (file != null) {
+                try {
+                    List<String> lines = new ArrayList<>();
+                    lines.add(selectedWindow.getWindowTitle() + " " + selectedWindow.getStartDate());
+                    lines.add("");
+                    lines.add("Keys clicks (key_text time):");
+                    for (KeyboardClick keyboardClick : selectedWindow.getKeyboardClickCollection()) {
+                        lines.add(keyboardClick.getKeyText() + " " + keyboardClick.getTime());
+                    }
+                    lines.add("");
+                    lines.add("Mouse clicks (button x y time):");
+                    for (MouseClick mouseClick : selectedWindow.getMouseClickCollection()) {
+                        lines.add(mouseClick.getButton() + " " + mouseClick.getX() + " " + mouseClick.getY() + " " + mouseClick.getTime());
+                    }
+                    lines.add("");
+                    lines.add("Mouse scrolls (direction time):");
+                    for (MouseScroll mouseScroll : selectedWindow.getMouseScrollCollection()) {
+                        lines.add(mouseScroll.getDirection() + " " + mouseScroll.getTime());
+                    }
+                    Files.write(Paths.get(file.getAbsolutePath()), lines, Charset.forName("UTF-8"));
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
     }
 
     @FXML
     private void savePictureAsMenuItemClick(ActionEvent event) {
-        System.out.println("savePictureAsMenuItemClick");
+        if (windowTableView.getSelectionModel().getSelectedItem() != null) {
+            Window selectedWindow = (Window) windowTableView.getSelectionModel().getSelectedItem();
+            String initialFileName = new String();
+            initialFileName += "CompListener " + selectedWindow.getWindowTitle() + " " + selectedWindow.getStartDate().getDate() + "-" + selectedWindow.getStartDate().getMonth() + "-" + (selectedWindow.getStartDate().getYear() + 1900) + " " + selectedWindow.getStartDate().getHours() + "-" + selectedWindow.getStartDate().getMinutes() + "-" + selectedWindow.getStartDate().getSeconds();
+
+            FileChooser fileChooser = new FileChooser();
+
+            fileChooser.setTitle("Save picture as:");
+            fileChooser.setInitialFileName(initialFileName);
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Desktop"));
+            FileChooser.ExtensionFilter fileExtensions = new FileChooser.ExtensionFilter("PNG", "*.png");
+            fileChooser.getExtensionFilters().add(fileExtensions);
+            fileExtensions = new FileChooser.ExtensionFilter("JPEG", "*.jpg");
+            fileChooser.getExtensionFilters().add(fileExtensions);
+            fileExtensions = new FileChooser.ExtensionFilter("GIF", "*.gif");
+            fileChooser.getExtensionFilters().add(fileExtensions);
+
+            File file = fileChooser.showSaveDialog(CompListenerViewer.getStage());
+            System.out.println(fileChooser.getSelectedExtensionFilter().getDescription() + " " + fileChooser.getSelectedExtensionFilter().toString());
+            if (file != null) {
+                try {
+                    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(selectedWindow.getPrintScreen());
+                    Image image = new Image(byteArrayInputStream);
+                    if (fileChooser.getSelectedExtensionFilter().getDescription().compareTo("PNG") == 0) {
+                        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+                    } else if (fileChooser.getSelectedExtensionFilter().getDescription().compareTo("JPEG") == 0) {
+                        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "jpg", file);
+                    } else if (fileChooser.getSelectedExtensionFilter().getDescription().compareTo("GIF") == 0) {
+                        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "gif", file);
+                    }
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }
     }
 
     @FXML

@@ -5,12 +5,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complistenerviewer.MainWindowController">
    <children>
-      <TableView fx:id="workstationTableView" layoutX="14.0" layoutY="43.0" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="365.0">
+      <TableView fx:id="workstationTableView" layoutX="14.0" layoutY="43.0" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="365.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="43.0">
         <columns>
           <TableColumn fx:id="computerNameColumn" prefWidth="105.0" text="Computer name" />
             <TableColumn fx:id="userDomainColumn" prefWidth="85.0" text="User domain" />
@@ -79,5 +81,11 @@
           </Menu>
         </menus>
       </MenuBar>
+      <TreeTableView fx:id="ttv" layoutX="436.0" layoutY="400.0" prefHeight="200.0" prefWidth="373.0">
+        <columns>
+          <TreeTableColumn fx:id="a" prefWidth="113.0" text="Window title" />
+          <TreeTableColumn fx:id="b" prefWidth="184.0" text="Start time" />
+        </columns>
+      </TreeTableView>
    </children>
 </AnchorPane>

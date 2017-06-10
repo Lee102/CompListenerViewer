@@ -17,14 +17,16 @@ import javafx.stage.Stage;
  * @author Łukasz Wojtas
  */
 public class CompListenerViewer extends Application {
-    
+
+    private static Stage stage;
+
     @Override
     public void start(Stage stage) throws Exception {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-        
+
         Scene scene = new Scene(root);
-        
+        CompListenerViewer.stage = stage;
         stage.setScene(scene);
         stage.show();
     }
@@ -35,5 +37,13 @@ public class CompListenerViewer extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        CompListenerViewer.stage = stage;
+    }
+
 }
