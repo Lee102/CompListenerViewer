@@ -5,9 +5,6 @@
  */
 package complistenerviewer;
 
-import entity.KeyboardClick;
-import entity.MouseClick;
-import entity.MouseScroll;
 import entity.Window;
 import entity.Workstation;
 import java.io.ByteArrayInputStream;
@@ -36,7 +33,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javax.imageio.ImageIO;
 import service.WorkstationService;
 
@@ -110,6 +106,7 @@ public class MainWindowController implements Initializable {
             b.setCellValueFactory(new PropertyValueFactory<>("startDate"));
 
             TreeItem<Window> root = new TreeItem<>(new Window()), first = null;
+            root.setExpanded(true);
 
             for (Window window : selectedWorkstation.getWindowCollection()) {
                 TreeItem<Window> item = new TreeItem<>(window);
@@ -120,15 +117,7 @@ public class MainWindowController implements Initializable {
                     first.getChildren().add(item);
                 }
             }
-            /*selectedWorkstation.getWindowCollection().forEach((window) -> {
-                TreeItem<Window> item = new TreeItem<>(window);
-                if (window.getFirstWindow()==1) {
-                    upper=item;
-                    root.getChildren().add(upper);
-                } else {
-                    upper.getChildren().add(item);
-                }
-            });*/
+            //ttv.setRoot(root);
             //System.out.println("asdf");
             //ttv.setRoot(root);
             //ttv.setRoot(root);
@@ -202,19 +191,19 @@ public class MainWindowController implements Initializable {
                     lines.add(selectedWindow.getWindowTitle() + " " + selectedWindow.getStartDate());
                     lines.add("");
                     lines.add("Keys clicks (key_text time):");
-                    for (KeyboardClick keyboardClick : selectedWindow.getKeyboardClickCollection()) {
+                    selectedWindow.getKeyboardClickCollection().forEach((keyboardClick) -> {
                         lines.add(keyboardClick.getKeyText() + " " + keyboardClick.getTime());
-                    }
+                    });
                     lines.add("");
                     lines.add("Mouse clicks (button x y time):");
-                    for (MouseClick mouseClick : selectedWindow.getMouseClickCollection()) {
+                    selectedWindow.getMouseClickCollection().forEach((mouseClick) -> {
                         lines.add(mouseClick.getButton() + " " + mouseClick.getX() + " " + mouseClick.getY() + " " + mouseClick.getTime());
-                    }
+                    });
                     lines.add("");
                     lines.add("Mouse scrolls (direction time):");
-                    for (MouseScroll mouseScroll : selectedWindow.getMouseScrollCollection()) {
+                    selectedWindow.getMouseScrollCollection().forEach((mouseScroll) -> {
                         lines.add(mouseScroll.getDirection() + " " + mouseScroll.getTime());
-                    }
+                    });
                     Files.write(Paths.get(file.getAbsolutePath()), lines, Charset.forName("UTF-8"));
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());

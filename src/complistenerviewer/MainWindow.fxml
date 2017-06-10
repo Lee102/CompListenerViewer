@@ -12,7 +12,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complistenerviewer.MainWindowController">
    <children>
-      <TableView fx:id="workstationTableView" layoutX="14.0" layoutY="43.0" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="365.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="43.0">
+      <ImageView fx:id="printScreen" fitHeight="600.0" fitWidth="800.0" layoutX="386.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="workstationTableView" layoutX="14.0" layoutY="43.0" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="365.0">
         <columns>
           <TableColumn fx:id="computerNameColumn" prefWidth="105.0" text="Computer name" />
             <TableColumn fx:id="userDomainColumn" prefWidth="85.0" text="User domain" />
@@ -39,7 +40,6 @@
             <TableColumn fx:id="firstWindowColumn" prefWidth="30.0" text="First" />
         </columns>
       </TableView>
-      <ImageView fx:id="printScreen" fitHeight="600.0" fitWidth="800.0" layoutX="386.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
       <TableView fx:id="keyboardClickTableView" layoutX="14.0" layoutY="474.0" prefHeight="170.0" prefWidth="215.0">
         <columns>
           <TableColumn fx:id="keyboardClickTimeColumn" prefWidth="130.0" text="Time" />
@@ -67,11 +67,6 @@
               <MenuItem mnemonicParsing="false" onAction="#saveDataAsMenuItemClick" text="Save data as..." />
                   <MenuItem mnemonicParsing="false" onAction="#savePictureAsMenuItemClick" text="Save picture as..." />
                   <MenuItem mnemonicParsing="false" onAction="#exitMenuItemClick" text="Exit" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
