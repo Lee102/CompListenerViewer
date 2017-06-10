@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,14 +62,14 @@ public class Window implements Serializable {
     private byte[] printScreen;
     @Column(name = "first_window")
     private Short firstWindow;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "windowId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "windowId")
     private Collection<MouseClick> mouseClickCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "windowId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "windowId")
     private Collection<KeyboardClick> keyboardClickCollection;
     @JoinColumn(name = "workstation_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Workstation workstationId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "windowId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "windowId")
     private Collection<MouseScroll> mouseScrollCollection;
 
     public Window() {
