@@ -27,12 +27,14 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import service.WorkstationService;
@@ -45,15 +47,28 @@ import service.WorkstationService;
 public class MainWindowController implements Initializable {
 
     @FXML
-    private TableView workstationTableView, wokstationAdditionalDataTableView, keyboardClickTableView, mouseClickTableView, mouseScrollTableView;
+    private TableView workstationTableView;
+
     @FXML
-    private TableColumn computerNameColumn, userDomainColumn, userNameColumn, macAddressColumn;
+    private TableView wokstationAdditionalDataTableView;
+
+    @FXML
+    private TableView keyboardClickTableView;
+
+    @FXML
+    private TableView mouseClickTableView;
+
+    @FXML
+    private TableView mouseScrollTableView;
 
     @FXML
     private TreeTableView<Window> windowTreeTableView;
 
     @FXML
-    private ImageView printScreen;
+    private ImageView imageView;
+
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private void workstationTableViewClick(MouseEvent event) {
@@ -72,12 +87,17 @@ public class MainWindowController implements Initializable {
 
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(selectedWindow.getPrintScreen());
             Image image = new Image(byteArrayInputStream);
-            printScreen.setImage(image);
+            imageView.setImage(image);
 
             KeyboardClickTable.getTable(keyboardClickTableView, selectedWindow.getKeyboardClickCollection());
             MouseClickTable.getTable(mouseClickTableView, selectedWindow.getMouseClickCollection());
             MouseScrollTable.getTable(mouseScrollTableView, selectedWindow.getMouseScrollCollection());
         }
+    }
+
+    @FXML
+    private void resize() {
+
     }
 
     @FXML
@@ -164,12 +184,16 @@ public class MainWindowController implements Initializable {
     }
 
     @FXML
-    private void exitMenuItemClick(ActionEvent event) {
+    private void closeMenuItemClick(ActionEvent event) {
         System.exit(0);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imageView.fitWidthProperty().bind(scrollPane.widthProperty());
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        imageView.setCache(true);
         List<Workstation> workstationList = WorkstationService.getAll();
 
         WorkstationTable.getTable(workstationTableView, workstationList);

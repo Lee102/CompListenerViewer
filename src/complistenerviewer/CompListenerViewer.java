@@ -7,10 +7,12 @@ package complistenerviewer;
 
 import java.util.logging.Level;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -27,7 +29,14 @@ public class CompListenerViewer extends Application {
 
         Scene scene = new Scene(root);
         CompListenerViewer.stage = stage;
+        stage.setTitle("CompListenerViewer");
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.setScene(scene);
+        stage.setOnCloseRequest((WindowEvent t) -> {
+            Platform.exit();
+            System.exit(0);
+        });
         stage.show();
     }
 
