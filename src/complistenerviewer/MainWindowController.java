@@ -27,14 +27,14 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
 import service.WorkstationService;
@@ -93,11 +93,6 @@ public class MainWindowController implements Initializable {
             MouseClickTable.getTable(mouseClickTableView, selectedWindow.getMouseClickCollection());
             MouseScrollTable.getTable(mouseScrollTableView, selectedWindow.getMouseScrollCollection());
         }
-    }
-
-    @FXML
-    private void resize() {
-
     }
 
     @FXML
@@ -186,6 +181,15 @@ public class MainWindowController implements Initializable {
     @FXML
     private void closeMenuItemClick(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    private void aboutMenuItemClick(ActionEvent event) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Program info");
+        alert.setHeaderText(null);
+        alert.setContentText("CompListenerViewer\nAuthor: Łukasz Wojtas");
+        alert.showAndWait();
     }
 
     @Override
