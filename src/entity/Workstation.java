@@ -15,7 +15,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Workstation.findById", query = "SELECT w FROM Workstation w WHERE w.id = :id")
     , @NamedQuery(name = "Workstation.findByComputerName", query = "SELECT w FROM Workstation w WHERE w.computerName = :computerName")
     , @NamedQuery(name = "Workstation.findByUserDomain", query = "SELECT w FROM Workstation w WHERE w.userDomain = :userDomain")
-    , @NamedQuery(name = "Workstation.findByUserName", query = "SELECT w FROM Workstation w WHERE w.userName = :userName")})
+    , @NamedQuery(name = "Workstation.findByUserName", query = "SELECT w FROM Workstation w WHERE w.userName = :userName")
+    , @NamedQuery(name = "Workstation.findByMacAddress", query = "SELECT w FROM Workstation w WHERE w.macAddress = :macAddress")})
 public class Workstation implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,9 +52,8 @@ public class Workstation implements Serializable {
     private String userDomain;
     @Column(name = "user_name")
     private String userName;
-    @Lob
     @Column(name = "mac_address")
-    private byte[] macAddress;
+    private String macAddress;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "workstationId")
     private WorkstationAdditionalData workstationAdditionalData;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "workstationId")
@@ -104,11 +103,11 @@ public class Workstation implements Serializable {
         this.userName = userName;
     }
 
-    public byte[] getMacAddress() {
+    public String getMacAddress() {
         return macAddress;
     }
 
-    public void setMacAddress(byte[] macAddress) {
+    public void setMacAddress(String macAddress) {
         this.macAddress = macAddress;
     }
 

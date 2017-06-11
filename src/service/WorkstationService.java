@@ -88,7 +88,7 @@ public class WorkstationService {
         }
     }
     
-    public static List<Workstation> findByMACAddress(byte[] macAddress) {
+    public static List<Workstation> findByMACAddress(String macAddress) {
         try {
             workstationDAO.setSession(SessionTransaction.openSession());
             List<Workstation> workstationList = workstationDAO.findByMACAddress(macAddress);

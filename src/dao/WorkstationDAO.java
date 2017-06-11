@@ -56,7 +56,7 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
     }
 
     @Override
-    public List<Workstation> findByMACAddress(byte[] macAddress) {
+    public List<Workstation> findByMACAddress(String macAddress) {
         Query query = getSession().createQuery("FROM Workstation WHERE mac_address=:macAddress").setParameter("macAddress", macAddress);
         List<Workstation> workstationList = query.list();
         return workstationList;

@@ -26,6 +26,6 @@ public interface WorkstationDAOInterface {
 
     public List<Workstation> findByUserName(String userName);
 
-    public List<Workstation> findByMACAddress(byte[] macAddress);
+    public List<Workstation> findByMACAddress(String macAddress);
 
 }
