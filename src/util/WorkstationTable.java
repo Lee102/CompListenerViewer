@@ -58,7 +58,7 @@ public class WorkstationTable {
     private static TableColumn<Workstation, byte[]> getMacAddressColumn() {
         TableColumn<Workstation, byte[]> macAddressColumn = new TableColumn<>("MAC address");
         macAddressColumn.setCellValueFactory(new PropertyValueFactory<>("macAddress"));
-        macAddressColumn.setMinWidth(90);
+        macAddressColumn.setMinWidth(110);
         return macAddressColumn;
     }
 
