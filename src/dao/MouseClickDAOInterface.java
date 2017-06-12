@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Interfejs klasy MouseClickDAO.
  *
  * @author Łukasz Wojtas
  */

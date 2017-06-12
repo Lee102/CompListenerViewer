@@ -11,11 +11,17 @@ import java.util.List;
 import org.hibernate.Query;
 
 /**
+ * Klasa DAO służąca do obsługi komunikacji z encją mouse_scroll w bazie danych.
  *
  * @author Łukasz Wojtas
  */
 public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
 
+    /**
+     * Wyszukanie wszystkich obiektów w bazie danych.
+     *
+     * @return Lista obiektów MouseScroll lub null.
+     */
     @Override
     public List<MouseScroll> getAll() {
         Query query = getSession().createQuery("FROM MouseScroll");
@@ -23,11 +29,22 @@ public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
         return mouseScrollList;
     }
 
+    /**
+     * Usunięcie obiektu z bazy danych.
+     *
+     * @param mouseScroll Obiekt do usunięcia.
+     */
     @Override
     public void delete(MouseScroll mouseScroll) {
         getSession().delete(mouseScroll);
     }
 
+    /**
+     * Wyszukanie obiektu w bazie danych za pomocą parametru id.
+     *
+     * @param id Wartość parametru do wyszukiwania.
+     * @return Obiekt MouseScroll lub null.
+     */
     @Override
     public MouseScroll findById(Integer id) {
         Query query = getSession().createQuery("FROM MouseScroll WHERE id=:id").setParameter("id", id);
@@ -35,6 +52,12 @@ public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
         return mouseScroll;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru direction.
+     *
+     * @param direction Wartość parametru do wyszukiwania.
+     * @return Lista obiektów MouseScroll lub null.
+     */
     @Override
     public List<MouseScroll> findByDirection(int direction) {
         Query query = getSession().createQuery("FROM MouseScroll WHERE direction=:direction").setParameter("direction", direction);
@@ -42,6 +65,12 @@ public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
         return mouseScrollList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru time.
+     *
+     * @param time Wartość parametru do wyszukiwania.
+     * @return Lista obiektów MouseScroll lub null.
+     */
     @Override
     public List<MouseScroll> findByTime(Date time) {
         Query query = getSession().createQuery("FROM MouseScroll WHERE time=:time").setParameter("time", time);
@@ -49,6 +78,13 @@ public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
         return mouseScrollList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych gdzie time jest większy lub równy
+     * parametrowi.
+     *
+     * @param time Wartość parametru do wyszukiwania.
+     * @return Lista obiektów MouseScroll lub null.
+     */
     @Override
     public List<MouseScroll> findFromTime(Date time) {
         Query query = getSession().createQuery("FROM MouseScroll WHERE time>=:time").setParameter("time", time);
@@ -56,6 +92,13 @@ public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
         return mouseScrollList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych gdzie time jest mniejszy lub równy
+     * parametrowi.
+     *
+     * @param time Wartość parametru do wyszukiwania.
+     * @return Lista obiektów MouseScroll lub null.
+     */
     @Override
     public List<MouseScroll> findToTime(Date time) {
         Query query = getSession().createQuery("FROM MouseScroll WHERE time<=:time").setParameter("time", time);
@@ -63,6 +106,14 @@ public class MouseScrollDAO extends DAO implements MouseScrollDAOInterface {
         return mouseScrollList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych gdzie time jest w zakresie pomiędzy
+     * parametrami.
+     *
+     * @param timeMin Wartość parametru do wyszukiwania - dolna granica.
+     * @param timeMax Wartość parametru do wyszukiwania - górna granica.
+     * @return Lista obiektów MouseScroll lub null.
+     */
     @Override
     public List<MouseScroll> findBetweenTime(Date timeMin, Date timeMax) {
         Query query = getSession().createQuery("FROM MouseScroll WHERE time>=:timeMin AND time<=:timeMax").setParameter("timeMin", timeMin).setParameter("timeMax", timeMax);

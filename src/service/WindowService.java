@@ -11,13 +11,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Service klasy WindowDAO.
  *
+ * @see WindowDAO {@link WindowDAO}
  * @author Łukasz Wojtas
  */
 public class WindowService {
 
+    /**
+     * Prywatne, statyczne i zainicjowane pole klasy WindowDAO.
+     */
     private static WindowDAO windowDAO = new WindowDAO();
 
+    /**
+     * Wywołanie metody getAll() klasy WindowDAO oraz zarządzanie sesją i
+     * transakcją.
+     *
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
     public static List<Window> getAll() {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
@@ -30,6 +41,12 @@ public class WindowService {
         }
     }
 
+    /**
+     * Wywołanie metody delete(...) klasy WindowDAO oraz zarządzanie sesją i
+     * transakcją.
+     *
+     * @param window Parametr do metody klasy WindowDAO.
+     */
     public static void delete(Window window) {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
@@ -41,6 +58,13 @@ public class WindowService {
         }
     }
 
+    /**
+     * Wywołanie metody findById(...) klasy WindowDAO oraz zarządzanie sesją i
+     * transakcją.
+     *
+     * @param id Parametr do metody klasy WindowDAO.
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
     public static Window findById(Integer id) {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
@@ -53,6 +77,32 @@ public class WindowService {
         }
     }
 
+    /**
+     * Wywołanie metody findByWindowTitle(...) klasy WindowDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param windowTitle Parametr do metody klasy WindowDAO.
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
+    public static List<Window> findByWindowTitle(String windowTitle) {
+        try {
+            windowDAO.setSession(SessionTransaction.openSession());
+            List<Window> windowList = windowDAO.findByWindowTitle(windowTitle);
+            SessionTransaction.closeSession(windowDAO.getSession());
+            return windowList;
+        } catch (Exception e) {
+            System.err.println(e);
+            return null;
+        }
+    }
+
+    /**
+     * Wywołanie metody findByStartDate(...) klasy WindowDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param startDate Parametr do metody klasy WindowDAO.
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
     public static List<Window> findByStartDate(Date startDate) {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
@@ -65,6 +115,13 @@ public class WindowService {
         }
     }
 
+    /**
+     * Wywołanie metody findFromDate(...) klasy WindowDAO oraz zarządzanie sesją
+     * i transakcją.
+     *
+     * @param date Parametr do metody klasy WindowDAO.
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
     public static List<Window> findFromDate(Date date) {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
@@ -77,6 +134,13 @@ public class WindowService {
         }
     }
 
+    /**
+     * Wywołanie metody findToDate(...) klasy WindowDAO oraz zarządzanie sesją i
+     * transakcją.
+     *
+     * @param date Parametr do metody klasy WindowDAO.
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
     public static List<Window> findToDate(Date date) {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
@@ -89,22 +153,18 @@ public class WindowService {
         }
     }
 
+    /**
+     * Wywołanie metody findBetweenDate(...) klasy WindowDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param dateMin Parametr do metody klasy WindowDAO.
+     * @param dateMax Parametr do metody klasy WindowDAO.
+     * @return Wartość zwracana z metody klasy WindowDAO.
+     */
     public static List<Window> findBetweenDate(Date dateMin, Date dateMax) {
         try {
             windowDAO.setSession(SessionTransaction.openSession());
             List<Window> windowList = windowDAO.findBetweenDate(dateMin, dateMax);
-            SessionTransaction.closeSession(windowDAO.getSession());
-            return windowList;
-        } catch (Exception e) {
-            System.err.println(e);
-            return null;
-        }
-    }
-
-    public static List<Window> findByWindowTitle(String windowTitle) {
-        try {
-            windowDAO.setSession(SessionTransaction.openSession());
-            List<Window> windowList = windowDAO.findByWindowTitle(windowTitle);
             SessionTransaction.closeSession(windowDAO.getSession());
             return windowList;
         } catch (Exception e) {

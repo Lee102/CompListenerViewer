@@ -10,13 +10,25 @@ import entity.WorkstationAdditionalData;
 import java.util.List;
 
 /**
+ * Service klasy WorkstationAdditionalDataDAO.
  *
+ * @see WorkstationAdditionalDataDAO {@link WorkstationAdditionalDataDAO}
  * @author Łukasz Wojtas
  */
 public class WorkstationAdditionalDataService {
 
+    /**
+     * Prywatne, statyczne i zainicjowane pole klasy
+     * WorkstationAdditionalDataDAO.
+     */
     private static WorkstationAdditionalDataDAO workstationAdditionalDataDAO = new WorkstationAdditionalDataDAO();
 
+    /**
+     * Wywołanie metody getAll() klasy WorkstationAdditionalDataDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> getAll() {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -29,6 +41,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody delete(...) klasy WorkstationAdditionalDataDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param workstationAdditionalData Parametr do metody klasy
+     * WorkstationAdditionalDataDAO.
+     */
     public static void delete(WorkstationAdditionalData workstationAdditionalData) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -40,6 +59,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findById(...) klasy WorkstationAdditionalDataDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param id Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static WorkstationAdditionalData findById(Integer id) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -52,6 +78,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByOsVersion(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param osVersion Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByOsVersion(String osVersion) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -64,6 +97,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByOsArch(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param osArch Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByOsArch(String osArch) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -76,6 +116,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByJavaVersion(...) klasy
+     * WorkstationAdditionalDataDAO oraz zarządzanie sesją i transakcją.
+     *
+     * @param javaVersion Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByJavaVersion(String javaVersion) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -88,6 +135,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByProcId(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param procId Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByProcId(String procId) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -100,6 +154,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByProcArch(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param procArch Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByProcArch(String procArch) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -112,6 +173,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByProcCores(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param procCores Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByProcCores(Integer procCores) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -124,6 +192,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByRamSize(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param ramSize Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByRamSize(Integer ramSize) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());
@@ -136,6 +211,13 @@ public class WorkstationAdditionalDataService {
         }
     }
 
+    /**
+     * Wywołanie metody findByDiskSize(...) klasy WorkstationAdditionalDataDAO
+     * oraz zarządzanie sesją i transakcją.
+     *
+     * @param diskSize Parametr do metody klasy WorkstationAdditionalDataDAO.
+     * @return Wartość zwracana z metody klasy WorkstationAdditionalDataDAO.
+     */
     public static List<WorkstationAdditionalData> findByDiskSize(Integer diskSize) {
         try {
             workstationAdditionalDataDAO.setSession(SessionTransaction.openSession());

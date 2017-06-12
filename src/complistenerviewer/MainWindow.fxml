@@ -26,14 +26,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#closeMenuItemClick" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Search">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Workstation" />
-                  <MenuItem mnemonicParsing="false" text="Window" />
-                  <SeparatorMenuItem mnemonicParsing="false" visible="false" />
-                  <MenuItem mnemonicParsing="false" text="Return to normal mode" visible="false" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#aboutMenuItemClick" text="About" />

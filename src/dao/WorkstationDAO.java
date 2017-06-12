@@ -10,11 +10,17 @@ import java.util.List;
 import org.hibernate.Query;
 
 /**
+ * Klasa DAO służąca do obsługi komunikacji z encją workstation w bazie danych.
  *
  * @author Łukasz Wojtas
  */
 public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
 
+    /**
+     * Wyszukanie wszystkich obiektów w bazie danych.
+     *
+     * @return Lista obiektów Workstation lub null.
+     */
     @Override
     public List<Workstation> getAll() {
         Query query = getSession().createQuery("FROM Workstation");
@@ -22,11 +28,22 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
         return workstationList;
     }
 
+    /**
+     * Usunięcie obiektu z bazy danych.
+     *
+     * @param workstation Obiekt do usunięcia.
+     */
     @Override
     public void delete(Workstation workstation) {
         getSession().delete(workstation);
     }
 
+    /**
+     * Wyszukanie obiektu w bazie danych za pomocą parametru id.
+     *
+     * @param id Wartość parametru do wyszukiwania.
+     * @return Obiekt Workstation lub null.
+     */
     @Override
     public Workstation findById(Integer id) {
         Query query = getSession().createQuery("FROM Workstation WHERE id=:id").setParameter("id", id);
@@ -34,6 +51,12 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
         return workstation;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru computer_name.
+     *
+     * @param computerName Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Workstation lub null.
+     */
     @Override
     public List<Workstation> findByComputerName(String computerName) {
         Query query = getSession().createQuery("FROM Workstation WHERE computer_name=:computerName").setParameter("computerName", computerName);
@@ -41,6 +64,12 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
         return workstationList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru user_domain.
+     *
+     * @param userDomain Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Workstation lub null.
+     */
     @Override
     public List<Workstation> findByUserDomain(String userDomain) {
         Query query = getSession().createQuery("FROM Workstation WHERE user_domain=:userDomain").setParameter("userDomain", userDomain);
@@ -48,6 +77,12 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
         return workstationList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru user_name.
+     *
+     * @param userName Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Workstation lub null.
+     */
     @Override
     public List<Workstation> findByUserName(String userName) {
         Query query = getSession().createQuery("FROM Workstation WHERE user_name=:userName").setParameter("userName", userName);
@@ -55,6 +90,12 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
         return workstationList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru mac_address.
+     *
+     * @param macAddress Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Workstation lub null.
+     */
     @Override
     public List<Workstation> findByMACAddress(String macAddress) {
         Query query = getSession().createQuery("FROM Workstation WHERE mac_address=:macAddress").setParameter("macAddress", macAddress);

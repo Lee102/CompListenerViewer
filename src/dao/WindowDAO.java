@@ -11,11 +11,17 @@ import java.util.List;
 import org.hibernate.Query;
 
 /**
+ * Klasa DAO służąca do obsługi komunikacji z encją window w bazie danych.
  *
  * @author Łukasz Wojtas
  */
 public class WindowDAO extends DAO implements WindowDAOInterface {
 
+    /**
+     * Wyszukanie wszystkich obiektów w bazie danych.
+     *
+     * @return Lista obiektów Window lub null.
+     */
     @Override
     public List<Window> getAll() {
         Query query = getSession().createQuery("FROM Workstation");
@@ -23,11 +29,22 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
         return windowList;
     }
 
+    /**
+     * Usunięcie obiektu z bazy danych.
+     *
+     * @param window Obiekt do usunięcia.
+     */
     @Override
     public void delete(Window window) {
         getSession().delete(window);
     }
 
+    /**
+     * Wyszukanie obiektu w bazie danych za pomocą parametru id.
+     *
+     * @param id Wartość parametru do wyszukiwania.
+     * @return Obiekt Window lub null.
+     */
     @Override
     public Window findById(Integer id) {
         Query query = getSession().createQuery("FROM Window WHERE id=:id").setParameter("id", id);
@@ -35,6 +52,25 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
         return window;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru window_title.
+     *
+     * @param windowTitle Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Window lub null.
+     */
+    @Override
+    public List<Window> findByWindowTitle(String windowTitle) {
+        Query query = getSession().createQuery("FROM Window WHERE window_title=:windowTitle").setParameter("windowTitle", windowTitle);
+        List<Window> windowList = query.list();
+        return windowList;
+    }
+
+    /**
+     * Wyszukanie obiektów w bazie danych za pomocą parametru start_date.
+     *
+     * @param startDate Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Window lub null.
+     */
     @Override
     public List<Window> findByStartDate(Date startDate) {
         Query query = getSession().createQuery("FROM Window WHERE start_date=:startDate").setParameter("startDate", startDate);
@@ -42,6 +78,13 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
         return windowList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych gdzie start_date jest większy lub
+     * równy parametrowi.
+     *
+     * @param date Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Window lub null.
+     */
     @Override
     public List<Window> findFromDate(Date date) {
         Query query = getSession().createQuery("FROM Window WHERE start_date>=:date").setParameter("date", date);
@@ -49,6 +92,13 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
         return windowList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych gdzie start_date jest mniejszy lub
+     * równy parametrowi.
+     *
+     * @param date Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Window lub null.
+     */
     @Override
     public List<Window> findToDate(Date date) {
         Query query = getSession().createQuery("FROM Window WHERE start_date<=:date").setParameter("date", date);
@@ -56,16 +106,17 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
         return windowList;
     }
 
+    /**
+     * Wyszukanie obiektów w bazie danych gdzie start_date jest w zakresie
+     * pomiędzy parametrami.
+     *
+     * @param dateMin Wartość parametru do wyszukiwania - dolna granica.
+     * @param dateMax Wartość parametru do wyszukiwania - górna granica.
+     * @return Lista obiektów Window lub null.
+     */
     @Override
     public List<Window> findBetweenDate(Date dateMin, Date dateMax) {
         Query query = getSession().createQuery("FROM Window WHERE start_date>=:dateMin AND start_date<=:dateMax").setParameter("dateMin", dateMin).setParameter("dateMax", dateMax);
-        List<Window> windowList = query.list();
-        return windowList;
-    }
-
-    @Override
-    public List<Window> findByWindowTitle(String windowTitle) {
-        Query query = getSession().createQuery("FROM Window WHERE window_title=:windowTitle").setParameter("windowTitle", windowTitle);
         List<Window> windowList = query.list();
         return windowList;
     }

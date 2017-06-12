@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
+ * Model encji workstation. Wygenerowany automatycznie.
  *
  * @author Łukasz Wojtas
  */
@@ -152,5 +153,5 @@ public class Workstation implements Serializable {
     public String toString() {
         return "entity.Workstation[ id=" + id + " ]";
     }
-    
+
 }

@@ -13,22 +13,43 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
+ * Klasa zarządzająca zawartością TableView wyświetlającego obiekty klasy
+ * WorkstationAdditionalData.
  *
  * @author Łukasz Wojtas
  */
 public class WorkstationAdditionalDataTable {
 
-    public static void getTable(TableView workstationAdditionalDataTableTable, WorkstationAdditionalData workstationAdditionalData) {
-        workstationAdditionalDataTableTable.getColumns().setAll(WorkstationAdditionalDataTable.getOsVersionColumn(), WorkstationAdditionalDataTable.getOsArchColumn(), WorkstationAdditionalDataTable.getJavaVersionColumn(), WorkstationAdditionalDataTable.getProcIdColumn(), WorkstationAdditionalDataTable.getProcArchColumn(), WorkstationAdditionalDataTable.getProcCoresColumn(), WorkstationAdditionalDataTable.getRamSizeColumn(), WorkstationAdditionalDataTable.getDiskSizeColumn());
-        workstationAdditionalDataTableTable.setItems(WorkstationAdditionalDataTable.getItems(workstationAdditionalData));
+    /**
+     * Metoda ustawiająca kolumny oraz ich zawartość na podstawie metod
+     * prywatnych.
+     *
+     * @param workstationAdditionalDataTable Obiekt TableView do wpisania
+     * danych.
+     * @param workstationAdditionalData Kolekcja danych.
+     */
+    public static void getTable(TableView workstationAdditionalDataTable, WorkstationAdditionalData workstationAdditionalData) {
+        workstationAdditionalDataTable.getColumns().setAll(WorkstationAdditionalDataTable.getOsVersionColumn(), WorkstationAdditionalDataTable.getOsArchColumn(), WorkstationAdditionalDataTable.getJavaVersionColumn(), WorkstationAdditionalDataTable.getProcIdColumn(), WorkstationAdditionalDataTable.getProcArchColumn(), WorkstationAdditionalDataTable.getProcCoresColumn(), WorkstationAdditionalDataTable.getRamSizeColumn(), WorkstationAdditionalDataTable.getDiskSizeColumn());
+        workstationAdditionalDataTable.setItems(WorkstationAdditionalDataTable.getItems(workstationAdditionalData));
     }
 
+    /**
+     * Metoda zwracająca dane w odpowiedniej formie.
+     *
+     * @param workstationAdditionalData Kolekcja danych.
+     * @return Dane w postaci ObservableList.
+     */
     private static ObservableList getItems(WorkstationAdditionalData workstationAdditionalData) {
         ObservableList observableList = FXCollections.observableArrayList();
         observableList.add(workstationAdditionalData);
         return observableList;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "OS version".
+     *
+     * @return Kolumna "OS version".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, String> getOsVersionColumn() {
         TableColumn<WorkstationAdditionalDataTable, String> osVersionColumn = new TableColumn<>("OS version");
         osVersionColumn.setCellValueFactory(new PropertyValueFactory<>("osVersion"));
@@ -36,6 +57,11 @@ public class WorkstationAdditionalDataTable {
         return osVersionColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "OS arch".
+     *
+     * @return Kolumna "OS arch".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, String> getOsArchColumn() {
         TableColumn<WorkstationAdditionalDataTable, String> osArchColumn = new TableColumn<>("OS arch");
         osArchColumn.setCellValueFactory(new PropertyValueFactory<>("osArch"));
@@ -43,6 +69,11 @@ public class WorkstationAdditionalDataTable {
         return osArchColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "Java version".
+     *
+     * @return Kolumna "Java version".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, String> getJavaVersionColumn() {
         TableColumn<WorkstationAdditionalDataTable, String> javaVersionColumn = new TableColumn<>("Java version");
         javaVersionColumn.setCellValueFactory(new PropertyValueFactory<>("javaVersion"));
@@ -50,6 +81,11 @@ public class WorkstationAdditionalDataTable {
         return javaVersionColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "CPU ID".
+     *
+     * @return Kolumna "CPU ID".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, String> getProcIdColumn() {
         TableColumn<WorkstationAdditionalDataTable, String> procIdColumn = new TableColumn<>("CPU ID");
         procIdColumn.setCellValueFactory(new PropertyValueFactory<>("procId"));
@@ -57,6 +93,11 @@ public class WorkstationAdditionalDataTable {
         return procIdColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "CPU arch".
+     *
+     * @return Kolumna "CPU arch".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, String> getProcArchColumn() {
         TableColumn<WorkstationAdditionalDataTable, String> procArchColumn = new TableColumn<>("CPU arch");
         procArchColumn.setCellValueFactory(new PropertyValueFactory<>("procArch"));
@@ -64,6 +105,11 @@ public class WorkstationAdditionalDataTable {
         return procArchColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "CPU cores".
+     *
+     * @return Kolumna "CPU cores".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, Integer> getProcCoresColumn() {
         TableColumn<WorkstationAdditionalDataTable, Integer> procCoresColumn = new TableColumn<>("CPU cores");
         procCoresColumn.setCellValueFactory(new PropertyValueFactory<>("procCores"));
@@ -71,6 +117,11 @@ public class WorkstationAdditionalDataTable {
         return procCoresColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "RAM size".
+     *
+     * @return Kolumna "RAM size".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, Integer> getRamSizeColumn() {
         TableColumn<WorkstationAdditionalDataTable, Integer> ramSizeColumn = new TableColumn<>("RAM size");
         ramSizeColumn.setCellValueFactory(new PropertyValueFactory<>("ramSize"));
@@ -78,6 +129,11 @@ public class WorkstationAdditionalDataTable {
         return ramSizeColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "Disk size".
+     *
+     * @return Kolumna "Disk size".
+     */
     private static TableColumn<WorkstationAdditionalDataTable, Integer> getDiskSizeColumn() {
         TableColumn<WorkstationAdditionalDataTable, Integer> diskSizeColumn = new TableColumn<>("Disk size");
         diskSizeColumn.setCellValueFactory(new PropertyValueFactory<>("diskSize"));

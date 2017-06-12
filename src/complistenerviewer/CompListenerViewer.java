@@ -15,13 +15,23 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
+ * Główna klasa programu.
  *
  * @author Łukasz Wojtas
  */
 public class CompListenerViewer extends Application {
 
+    /**
+     * Prywatne, statyczne pole klasy Stage.
+     */
     private static Stage stage;
 
+    /**
+     * Metoda tworząca nową scenę za pomocą pliku FXML.
+     *
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
@@ -41,16 +51,28 @@ public class CompListenerViewer extends Application {
     }
 
     /**
-     * @param args the command line arguments
+     * Metoda main.
+     *
+     * @param args Argumenty linii poleceń.
      */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Getter pola stage.
+     *
+     * @return Wartość pola stage.
+     */
     public static Stage getStage() {
         return stage;
     }
 
+    /**
+     * Setter pola stage.
+     *
+     * @param stage Wartość do zapisania do pola stage.
+     */
     public static void setStage(Stage stage) {
         CompListenerViewer.stage = stage;
     }

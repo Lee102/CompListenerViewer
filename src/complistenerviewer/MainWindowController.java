@@ -70,6 +70,13 @@ public class MainWindowController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
 
+    /**
+     * Metoda obsługująca kliknięcie na TableView wyświetlający obiekty klasy
+     * Workstation. Po wybraniu 1 z obiektów ładowane są zawartość TreeTableView
+     * wyświetlającego obiekty klasy Window.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
     @FXML
     private void workstationTableViewClick(MouseEvent event) {
         if (workstationTableView.getSelectionModel().getSelectedItem() != null) {
@@ -80,6 +87,14 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Metoda obsługująca kliknięcie na TreeTableView wyświetlający obiekty
+     * klasy Window. Po wybraniu 1 z obiektów ładowany jest obraz do ImageView
+     * oraz zawartość TableView wyświetlających obiekty klas KeyboardClick,
+     * MouseClick, MouseScroll.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
     @FXML
     private void windowTreeTableViewClick(MouseEvent event) {
         if (windowTreeTableView.getSelectionModel().getSelectedItem() != null) {
@@ -95,6 +110,13 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Metoda obsługująca kliknięcie w MenuItem "Save data as...".
+     * Inicjalizowany jest FileChooser w celu wybrania miejsca do zapisu danych.
+     * Następnie w wybarnym miejscu zapisywane są dane.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
     @FXML
     private void saveDataAsMenuItemClick(ActionEvent event) {
         if (windowTreeTableView.getSelectionModel().getSelectedItem() != null) {
@@ -139,6 +161,13 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Metoda obsługująca kliknięcie w MenuItem "Save picture as...".
+     * Inicjalizowany jest FileChooser w celu wybrania miejsca do zapisu zrzutu
+     * ekranu. Następnie w wybarnym miejscu zapisywany jest obraz.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
     @FXML
     private void savePictureAsMenuItemClick(ActionEvent event) {
         if (windowTreeTableView.getSelectionModel().getSelectedItem() != null) {
@@ -178,11 +207,22 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Metoda obsługująca kliknięcie w MenuItem "Close". Program jest wyłączany.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
     @FXML
     private void closeMenuItemClick(ActionEvent event) {
         System.exit(0);
     }
 
+    /**
+     * Metoda obsługująca kliknięcie w MenuItem "About". Wyświetlany jest Alert
+     * z podstawowymi informacjami o programie.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
     @FXML
     private void aboutMenuItemClick(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -192,6 +232,13 @@ public class MainWindowController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Metoda inicjalizująca. Ustawia właściwości skalowania ImageView oraz
+     * przypisuje dane do TableView wyświetlającego obiekty klasy Workstation.
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imageView.fitWidthProperty().bind(scrollPane.widthProperty());

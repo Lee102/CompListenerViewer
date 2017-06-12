@@ -11,13 +11,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Service klasy KeyboardClickDAO.
  *
+ * @see KeyboardClickDAO {@link KeyboardClickDAO}
  * @author Łukasz Wojtas
  */
 public class KeyboardClickService {
 
+    /**
+     * Prywatne, statyczne i zainicjowane pole klasy KeyboardClickDAO.
+     */
     private static KeyboardClickDAO keyboardClickDAO = new KeyboardClickDAO();
 
+    /**
+     * Wywołanie metody getAll() klasy KeyboardClickDAO oraz zarządzanie sesją i
+     * transakcją.
+     *
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static List<KeyboardClick> getAll() {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -30,6 +41,12 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody delete(...) klasy KeyboardClickDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param keyboardClick Parametr do metody klasy KeyboardClickDAO.
+     */
     public static void delete(KeyboardClick keyboardClick) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -41,6 +58,13 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody findById(...) klasy KeyboardClickDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param id Parametr do metody klasy KeyboardClickDAO.
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static KeyboardClick findById(Integer id) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -53,6 +77,13 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody findByKeyText(...) klasy KeyboardClickDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param keyText Parametr do metody klasy KeyboardClickDAO.
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static List<KeyboardClick> findByKeyText(String keyText) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -65,6 +96,13 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody findByTime(...) klasy KeyboardClickDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param time Parametr do metody klasy KeyboardClickDAO.
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static List<KeyboardClick> findByTime(Date time) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -77,6 +115,13 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody findFromTime(...) klasy KeyboardClickDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param time Parametr do metody klasy KeyboardClickDAO.
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static List<KeyboardClick> findFromTime(Date time) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -89,6 +134,13 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody findToTime(...) klasy KeyboardClickDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param time Parametr do metody klasy KeyboardClickDAO.
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static List<KeyboardClick> findToTime(Date time) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());
@@ -101,6 +153,14 @@ public class KeyboardClickService {
         }
     }
 
+    /**
+     * Wywołanie metody findBetweenTime(...) klasy KeyboardClickDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param timeMin Parametr do metody klasy KeyboardClickDAO.
+     * @param timeMax Parametr do metody klasy KeyboardClickDAO.
+     * @return Wartość zwracana z metody klasy KeyboardClickDAO.
+     */
     public static List<KeyboardClick> findBetweenTime(Date timeMin, Date timeMax) {
         try {
             keyboardClickDAO.setSession(SessionTransaction.openSession());

@@ -7,7 +7,6 @@ package util;
 
 import entity.Workstation;
 import java.util.Collection;
-import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -15,16 +14,31 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
+ * Klasa zarządzająca zawartością TableView wyświetlającego obiekty klasy
+ * Workstation.
  *
  * @author Łukasz Wojtas
  */
 public class WorkstationTable {
 
+    /**
+     * Metoda ustawiająca kolumny oraz ich zawartość na podstawie metod
+     * prywatnych.
+     *
+     * @param workstationTable Obiekt TableView do wpisania danych.
+     * @param workstationCollection Kolekcja danych.
+     */
     public static void getTable(TableView workstationTable, Collection<Workstation> workstationCollection) {
         workstationTable.getColumns().setAll(WorkstationTable.getComputerNameColumn(), WorkstationTable.getUserDomainColumn(), WorkstationTable.getUserNameColumn(), WorkstationTable.getMacAddressColumn());
         workstationTable.setItems(WorkstationTable.getItems(workstationCollection));
     }
 
+    /**
+     * Metoda zwracająca dane w odpowiedniej formie.
+     *
+     * @param workstationCollection Kolekcja danych.
+     * @return Dane w postaci ObservableList.
+     */
     private static ObservableList getItems(Collection<Workstation> workstationCollection) {
         ObservableList observableList = FXCollections.observableArrayList();
         workstationCollection.forEach((workstation) -> {
@@ -32,8 +46,12 @@ public class WorkstationTable {
         });
         return observableList;
     }
-//computerNameColumn, userDomainColumn, userNameColumn, macAddressColumn
 
+    /**
+     * Metoda ustawiająca parametry kolumny "Computer name".
+     *
+     * @return Kolumna "Computer name".
+     */
     private static TableColumn<Workstation, String> getComputerNameColumn() {
         TableColumn<Workstation, String> computerNameColumn = new TableColumn<>("Computer name");
         computerNameColumn.setCellValueFactory(new PropertyValueFactory<>("computerName"));
@@ -41,6 +59,11 @@ public class WorkstationTable {
         return computerNameColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "User domain".
+     *
+     * @return Kolumna "User domain".
+     */
     private static TableColumn<Workstation, String> getUserDomainColumn() {
         TableColumn<Workstation, String> userDomainColumn = new TableColumn<>("User domain");
         userDomainColumn.setCellValueFactory(new PropertyValueFactory<>("userDomain"));
@@ -48,6 +71,11 @@ public class WorkstationTable {
         return userDomainColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "User name".
+     *
+     * @return Kolumna "User name".
+     */
     private static TableColumn<Workstation, String> getUserNameColumn() {
         TableColumn<Workstation, String> userNameColumn = new TableColumn<>("User name");
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
@@ -55,6 +83,11 @@ public class WorkstationTable {
         return userNameColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "MAC address".
+     *
+     * @return Kolumna "MAC address".
+     */
     private static TableColumn<Workstation, byte[]> getMacAddressColumn() {
         TableColumn<Workstation, byte[]> macAddressColumn = new TableColumn<>("MAC address");
         macAddressColumn.setCellValueFactory(new PropertyValueFactory<>("macAddress"));

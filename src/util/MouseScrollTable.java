@@ -15,16 +15,31 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
+ * Klasa zarządzająca zawartością TableView wyświetlającego obiekty klasy
+ * MouseScroll.
  *
  * @author Łukasz Wojtas
  */
 public class MouseScrollTable {
 
+    /**
+     * Metoda ustawiająca kolumny oraz ich zawartość na podstawie metod
+     * prywatnych.
+     *
+     * @param mouseScrollTable Obiekt TableView do wpisania danych.
+     * @param mouseScrollCollection Kolekcja danych.
+     */
     public static void getTable(TableView mouseScrollTable, Collection<MouseScroll> mouseScrollCollection) {
         mouseScrollTable.getColumns().setAll(MouseScrollTable.getMouseScrollTimeColumn(), MouseScrollTable.getMouseScrollDirectionColumn());
         mouseScrollTable.setItems(MouseScrollTable.getItems(mouseScrollCollection));
     }
 
+    /**
+     * Metoda zwracająca dane w odpowiedniej formie.
+     *
+     * @param mouseScrollCollection Kolekcja danych.
+     * @return Dane w postaci ObservableList.
+     */
     private static ObservableList getItems(Collection<MouseScroll> mouseScrollCollection) {
         ObservableList observableList = FXCollections.observableArrayList();
         mouseScrollCollection.forEach((mouseScroll) -> {
@@ -33,6 +48,11 @@ public class MouseScrollTable {
         return observableList;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "Time".
+     *
+     * @return Kolumna "Time".
+     */
     private static TableColumn<MouseScroll, Date> getMouseScrollTimeColumn() {
         TableColumn<MouseScroll, Date> mouseScrollTimeColumn = new TableColumn<>("Time");
         mouseScrollTimeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -40,6 +60,11 @@ public class MouseScrollTable {
         return mouseScrollTimeColumn;
     }
 
+    /**
+     * Metoda ustawiająca parametry kolumny "Direction".
+     *
+     * @return Kolumna "Direction".
+     */
     private static TableColumn<MouseScroll, String> getMouseScrollDirectionColumn() {
         TableColumn<MouseScroll, String> mouseScrollDirectionColumn = new TableColumn<>("Direction");
         mouseScrollDirectionColumn.setCellValueFactory(new PropertyValueFactory<>("direction"));

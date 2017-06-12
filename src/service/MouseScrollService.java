@@ -11,13 +11,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Service klasy MouseScrollDAO.
  *
+ * @see MouseScrollDAO {@link MouseScrollDAO}
  * @author Łukasz Wojtas
  */
 public class MouseScrollService {
 
+    /**
+     * Prywatne, statyczne i zainicjowane pole klasy MouseScrollDAO.
+     */
     private static MouseScrollDAO mouseScrollDAO = new MouseScrollDAO();
 
+    /**
+     * Wywołanie metody getAll() klasy MouseScrollDAO oraz zarządzanie sesją i
+     * transakcją.
+     *
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static List<MouseScroll> getAll() {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -30,6 +41,12 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody delete(...) klasy MouseScrollDAO oraz zarządzanie sesją
+     * i transakcją.
+     *
+     * @param mouseScroll Parametr do metody klasy MouseScrollDAO.
+     */
     public static void delete(MouseScroll mouseScroll) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -41,6 +58,13 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody findById(...) klasy MouseScrollDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param id Parametr do metody klasy MouseScrollDAO.
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static MouseScroll findById(Integer id) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -53,6 +77,13 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody findByDirection(...) klasy MouseScrollDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param direction Parametr do metody klasy MouseScrollDAO.
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static List<MouseScroll> findByDirection(int direction) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -65,6 +96,13 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody findByTime(...) klasy MouseScrollDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param time Parametr do metody klasy MouseScrollDAO.
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static List<MouseScroll> findByTime(Date time) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -77,6 +115,13 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody findFromTime(...) klasy MouseScrollDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param time Parametr do metody klasy MouseScrollDAO.
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static List<MouseScroll> findFromTime(Date time) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -89,6 +134,13 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody findToTime(...) klasy MouseScrollDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param time Parametr do metody klasy MouseScrollDAO.
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static List<MouseScroll> findToTime(Date time) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
@@ -101,6 +153,14 @@ public class MouseScrollService {
         }
     }
 
+    /**
+     * Wywołanie metody findBetweenTime(...) klasy MouseScrollDAO oraz
+     * zarządzanie sesją i transakcją.
+     *
+     * @param timeMin Parametr do metody klasy MouseScrollDAO.
+     * @param timeMax Parametr do metody klasy MouseScrollDAO.
+     * @return Wartość zwracana z metody klasy MouseScrollDAO.
+     */
     public static List<MouseScroll> findBetweenTime(Date timeMin, Date timeMax) {
         try {
             mouseScrollDAO.setSession(SessionTransaction.openSession());
