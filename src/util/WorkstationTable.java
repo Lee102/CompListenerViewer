@@ -30,7 +30,11 @@ public class WorkstationTable {
      */
     public static void getTable(TableView workstationTable, Collection<Workstation> workstationCollection) {
         workstationTable.getColumns().setAll(WorkstationTable.getComputerNameColumn(), WorkstationTable.getUserDomainColumn(), WorkstationTable.getUserNameColumn(), WorkstationTable.getMacAddressColumn());
-        workstationTable.setItems(WorkstationTable.getItems(workstationCollection));
+        if (workstationCollection != null) {
+            workstationTable.setItems(WorkstationTable.getItems(workstationCollection));
+        } else {
+            workstationTable.setItems(null);
+        }
     }
 
     /**

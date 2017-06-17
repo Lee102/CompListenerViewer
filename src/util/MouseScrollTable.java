@@ -31,7 +31,11 @@ public class MouseScrollTable {
      */
     public static void getTable(TableView mouseScrollTable, Collection<MouseScroll> mouseScrollCollection) {
         mouseScrollTable.getColumns().setAll(MouseScrollTable.getMouseScrollTimeColumn(), MouseScrollTable.getMouseScrollDirectionColumn());
-        mouseScrollTable.setItems(MouseScrollTable.getItems(mouseScrollCollection));
+        if (mouseScrollCollection != null) {
+            mouseScrollTable.setItems(MouseScrollTable.getItems(mouseScrollCollection));
+        } else {
+            mouseScrollTable.setItems(null);
+        }
     }
 
     /**
@@ -71,5 +75,5 @@ public class MouseScrollTable {
         mouseScrollDirectionColumn.setMinWidth(71);
         return mouseScrollDirectionColumn;
     }
-
+    
 }

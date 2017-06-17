@@ -24,7 +24,7 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
      */
     @Override
     public List<Window> getAll() {
-        Query query = getSession().createQuery("FROM Workstation");
+        Query query = getSession().createQuery("FROM Window");
         List<Window> windowList = query.list();
         return windowList;
     }
@@ -121,4 +121,37 @@ public class WindowDAO extends DAO implements WindowDAOInterface {
         return windowList;
     }
 
+    /**
+     * Wyszukanie obiektu w bazie danych za pomocą wszystkich możliwych
+     * parametrów.
+     *
+     * @param windowTitle Wartość parametru do wyszukiwania.
+     * @param dateMin Wartość parametru do wyszukiwania - dolna granica.
+     * @param dateMax Wartość parametru do wyszukiwania - górna granica.
+     * @return
+     */
+    @Override
+    public List<Window> findByAll(String windowTitle, Date dateMin, Date dateMax) {
+        Query query;
+        if (dateMax != null) {
+            dateMax.setHours(23);
+            dateMax.setMinutes(59);
+            dateMax.setSeconds(59);
+        }
+        if (dateMin != null) {
+            if (dateMax != null) {
+                query = getSession().createQuery("FROM Window WHERE window_title LIKE :windowTitle AND start_date>=:dateMin AND start_date<=:dateMax").setParameter("windowTitle", "%" + windowTitle + "%").setParameter("dateMin", dateMin).setParameter("dateMax", dateMax);
+            } else {
+                query = getSession().createQuery("FROM Window WHERE window_title LIKE :windowTitle AND start_date>=:dateMin").setParameter("windowTitle", "%" + windowTitle + "%").setParameter("dateMin", dateMin);
+            }
+        } else if (dateMax != null) {
+            query = getSession().createQuery("FROM Window WHERE window_title LIKE :windowTitle AND start_date<=:dateMax").setParameter("windowTitle", "%" + windowTitle + "%").setParameter("dateMax", dateMax);
+        } else {
+            query = getSession().createQuery("FROM Window WHERE window_title LIKE :windowTitle").setParameter("windowTitle", "%" + windowTitle + "%");
+            
+        }
+        List<Window> windowList = query.list();
+        return windowList;
+    }
+    
 }

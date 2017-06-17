@@ -31,7 +31,11 @@ public class MouseClickTable {
      */
     public static void getTable(TableView mouseClickTable, Collection<MouseClick> mouseClickCollection) {
         mouseClickTable.getColumns().setAll(MouseClickTable.getMouseClickTimeColumn(), MouseClickTable.getMouseClickButtonColumn(), MouseClickTable.getMouseClickXColumn(), MouseClickTable.getMouseClickYColumn());
-        mouseClickTable.setItems(MouseClickTable.getItems(mouseClickCollection));
+        if (mouseClickCollection != null) {
+            mouseClickTable.setItems(MouseClickTable.getItems(mouseClickCollection));
+        } else {
+            mouseClickTable.setItems(null);
+        }
     }
 
     /**

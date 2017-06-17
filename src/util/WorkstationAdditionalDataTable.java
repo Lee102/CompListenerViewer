@@ -30,7 +30,11 @@ public class WorkstationAdditionalDataTable {
      */
     public static void getTable(TableView workstationAdditionalDataTable, WorkstationAdditionalData workstationAdditionalData) {
         workstationAdditionalDataTable.getColumns().setAll(WorkstationAdditionalDataTable.getOsVersionColumn(), WorkstationAdditionalDataTable.getOsArchColumn(), WorkstationAdditionalDataTable.getJavaVersionColumn(), WorkstationAdditionalDataTable.getProcIdColumn(), WorkstationAdditionalDataTable.getProcArchColumn(), WorkstationAdditionalDataTable.getProcCoresColumn(), WorkstationAdditionalDataTable.getRamSizeColumn(), WorkstationAdditionalDataTable.getDiskSizeColumn());
-        workstationAdditionalDataTable.setItems(WorkstationAdditionalDataTable.getItems(workstationAdditionalData));
+        if (workstationAdditionalData != null) {
+            workstationAdditionalDataTable.setItems(WorkstationAdditionalDataTable.getItems(workstationAdditionalData));
+        } else {
+            workstationAdditionalDataTable.setItems(null);
+        }
     }
 
     /**
@@ -140,5 +144,5 @@ public class WorkstationAdditionalDataTable {
         diskSizeColumn.setMinWidth(70);
         return diskSizeColumn;
     }
-
+    
 }

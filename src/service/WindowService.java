@@ -172,5 +172,17 @@ public class WindowService {
             return null;
         }
     }
+    
+    public static List<Window> findByAll(String windowTitle, Date dateMin, Date dateMax) {
+        try {
+            windowDAO.setSession(SessionTransaction.openSession());
+            List<Window> windowList = windowDAO.findByAll(windowTitle, dateMin, dateMax);
+            SessionTransaction.closeSession(windowDAO.getSession());
+            return windowList;
+        } catch (Exception e) {
+            System.err.println(e);
+            return null;
+        }
+    }
 
 }

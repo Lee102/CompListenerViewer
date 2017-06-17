@@ -32,4 +32,6 @@ public interface WindowDAOInterface {
 
     public List<Window> findBetweenDate(Date dateMin, Date dateMax);
 
+    public List<Window> findByAll(String windowTitle, Date dateMin, Date dateMax);
+
 }

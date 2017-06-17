@@ -103,4 +103,21 @@ public class WorkstationDAO extends DAO implements WorkstationDAOInterface {
         return workstationList;
     }
 
+    /**
+     * Wyszukanie obiektu w bazie danych za pomocą wszystkich możliwych
+     * parametrów.
+     *
+     * @param computerName Wartość parametru do wyszukiwania.
+     * @param userDomain Wartość parametru do wyszukiwania.
+     * @param userName Wartość parametru do wyszukiwania.
+     * @param macAddress Wartość parametru do wyszukiwania.
+     * @return Lista obiektów Workstation lub null.
+     */
+    @Override
+    public List<Workstation> findByAll(String computerName, String userDomain, String userName, String macAddress) {
+        Query query = getSession().createQuery("FROM Workstation WHERE computer_name LIKE :computerName AND user_domain LIKE :userDomain AND user_name LIKE :userName AND mac_address LIKE :macAddress").setParameter("computerName", "%" + computerName + "%").setParameter("userDomain", "%" + userDomain + "%").setParameter("userName", "%" + userName + "%").setParameter("macAddress", "%" + macAddress + "%");
+        List<Workstation> workstationList = query.list();
+        return workstationList;
+    }
+
 }

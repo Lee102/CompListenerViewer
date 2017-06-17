@@ -31,7 +31,11 @@ public class KeyboardClickTable {
      */
     public static void getTable(TableView keyboardClickTable, Collection<KeyboardClick> keyboardClickCollection) {
         keyboardClickTable.getColumns().setAll(KeyboardClickTable.getKeyboardClickTimeColumn(), KeyboardClickTable.getKeyboardClickTextColumn());
-        keyboardClickTable.setItems(KeyboardClickTable.getItems(keyboardClickCollection));
+        if (keyboardClickCollection != null) {
+            keyboardClickTable.setItems(KeyboardClickTable.getItems(keyboardClickCollection));
+        } else {
+            keyboardClickTable.setItems(null);
+        }
     }
 
     /**

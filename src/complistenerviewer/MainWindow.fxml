@@ -8,6 +8,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -26,6 +27,25 @@
                   <MenuItem mnemonicParsing="false" onAction="#closeMenuItemClick" text="Close" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+              <items>
+                  <Menu mnemonicParsing="false" text="Change keyboard clicks display mode...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#basickInfoIncMenuItemClick" text="Basic info (include backspace)" />
+                        <MenuItem mnemonicParsing="false" onAction="#basickInfoExcMenuItemClick" text="Basic info (exclude backspace)" />
+                        <MenuItem mnemonicParsing="false" onAction="#extendedInfoMenuItemClick" text="Extended info (+ mouse scrolls)" />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="Search by...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#searchByWorkstationMenuItemClick" text="workstation data" />
+                        <MenuItem mnemonicParsing="false" onAction="#searchByWindowMenuItemClick" text="window data" />
+                    </items>
+                  </Menu>
+                  <MenuItem fx:id="backToNormalDisplayModeMenuItem" mnemonicParsing="false" onAction="#backToNormalDisplayModeMenuItemClick" text="Back to normal display mode" visible="false" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#aboutMenuItemClick" text="About" />
@@ -75,7 +95,13 @@
                            </font>
                         </Label>
                         <TableView fx:id="mouseClickTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                        <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <Label fx:id="keyboardClickLabel" text="Keyboard clicks">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="keyboardClickTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" />
+                        <HBox fx:id="keyboardClickAndMouseScrollHBox" alignment="TOP_CENTER" prefHeight="120.0" prefWidth="200.0" visible="false" VBox.vgrow="ALWAYS">
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                                  <children>
@@ -105,7 +131,7 @@
                      <content>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageView" onMouseClicked="#imageViewClick" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </VBox>
                      </content>

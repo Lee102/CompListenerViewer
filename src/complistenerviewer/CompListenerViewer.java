@@ -36,7 +36,6 @@ public class CompListenerViewer extends Application {
     public void start(Stage stage) throws Exception {
         java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
         Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-
         Scene scene = new Scene(root);
         CompListenerViewer.stage = stage;
         stage.setTitle("CompListenerViewer");

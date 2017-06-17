@@ -152,4 +152,26 @@ public class WorkstationService {
         }
     }
 
+    /**
+     * Wywołanie metody findByAll(...) klasy WorkstationDAO oraz zarządzanie
+     * sesją i transakcją.
+     *
+     * @param computerName Parametr do metody klasy WorkstationDAO.
+     * @param userDomain Parametr do metody klasy WorkstationDAO.
+     * @param userName Parametr do metody klasy WorkstationDAO.
+     * @param macAddress Parametr do metody klasy WorkstationDAO.
+     * @return Wartość zwracana z metody klasy WorkstationDAO.
+     */
+    public static List<Workstation> findByAll(String computerName, String userDomain, String userName, String macAddress) {
+        try {
+            workstationDAO.setSession(SessionTransaction.openSession());
+            List<Workstation> workstationList = workstationDAO.findByAll(computerName, userDomain, userName, macAddress);
+            SessionTransaction.closeSession(workstationDAO.getSession());
+            return workstationList;
+        } catch (Exception e) {
+            System.err.println(e);
+            return null;
+        }
+    }
+
 }

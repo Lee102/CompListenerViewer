@@ -31,7 +31,28 @@ public class WindowTable {
     public static void getTable(TreeTableView<Window> windowTable, Collection<Window> windowCollection) {
         windowTable.getColumns().setAll(WindowTable.getWindowTitleColumn(), WindowTable.getStartDateColumn());
         windowTable.setShowRoot(false);
-        windowTable.setRoot(WindowTable.getRoot(windowCollection));
+        if (windowCollection != null) {
+            windowTable.setRoot(WindowTable.getRoot(windowCollection));
+        } else {
+            windowTable.setRoot(null);
+        }
+    }
+
+    /**
+     * Metoda ustawiająca kolumny oraz ich zawartość na podstawie metod
+     * prywatnych do postaci podobnej do TableView.
+     *
+     * @param windowTable Obiekt TreeTableView do wpisania danych.
+     * @param windowCollection Kolekcja danych.
+     */
+    public static void getTableWithoutLevels(TreeTableView<Window> windowTable, Collection<Window> windowCollection) {
+        windowTable.getColumns().setAll(WindowTable.getWindowTitleColumn(), WindowTable.getStartDateColumn());
+        windowTable.setShowRoot(false);
+        if (windowCollection != null) {
+            windowTable.setRoot(WindowTable.getRootWithoutLevels(windowCollection));
+        } else {
+            windowTable.setRoot(null);
+        }
     }
 
     /**
@@ -50,6 +71,21 @@ public class WindowTable {
             } else if (rowWithFirstWindow != null) {
                 rowWithFirstWindow.getChildren().add(row);
             }
+        }
+        return root;
+    }
+
+    /**
+     * Metoda zwracająca dane w formie podobnej do TableView.
+     *
+     * @param windowCollection Kolekcja danych.
+     * @return Dane w postaci TreeItem<Window> - root.
+     */
+    private static TreeItem<Window> getRootWithoutLevels(Collection<Window> windowCollection) {
+        TreeItem<Window> root = new TreeItem<>(new Window());
+        for (Window window : windowCollection) {
+            TreeItem<Window> row = new TreeItem<>(window);
+            root.getChildren().add(row);
         }
         return root;
     }
