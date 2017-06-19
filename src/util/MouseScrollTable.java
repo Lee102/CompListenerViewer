@@ -30,7 +30,7 @@ public class MouseScrollTable {
      * @param mouseScrollCollection Kolekcja danych.
      */
     public static void getTable(TableView mouseScrollTable, Collection<MouseScroll> mouseScrollCollection) {
-        mouseScrollTable.getColumns().setAll(MouseScrollTable.getMouseScrollTimeColumn(), MouseScrollTable.getMouseScrollDirectionColumn());
+        mouseScrollTable.getColumns().setAll(MouseScrollTable.getMouseScrollDirectionColumn(), MouseScrollTable.getMouseScrollTimeColumn());
         if (mouseScrollCollection != null) {
             mouseScrollTable.setItems(MouseScrollTable.getItems(mouseScrollCollection));
         } else {
@@ -75,5 +75,5 @@ public class MouseScrollTable {
         mouseScrollDirectionColumn.setMinWidth(71);
         return mouseScrollDirectionColumn;
     }
-    
+
 }

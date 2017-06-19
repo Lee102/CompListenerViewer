@@ -284,6 +284,34 @@ public class MainWindowController implements Initializable {
     }
 
     /**
+     * Metoda obsługująca kliknięcie w MenuItem "Save picture as...". Pobierane
+     * są nowe dane z bazy danych.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
+    @FXML
+    private void refreshDataMenuItemClick(ActionEvent event) {
+        List<Workstation> workstationList = WorkstationService.getAll();
+        WorkstationTable.getTable(workstationTableView, workstationList);
+        WorkstationAdditionalDataTable.getTable(wokstationAdditionalDataTableView, null);
+        WindowTable.getTable(windowTreeTableView, null);
+        MouseClickTable.getTable(mouseClickTableView, null);
+        KeyboardClickTable.getTable(keyboardClickTableView, null);
+        KeyboardClickTextArea.getTextAreaInc(keyboardClickTextArea, null);
+        MouseScrollTable.getTable(mouseScrollTableView, null);
+    }
+
+    /**
+     * Metoda obsługująca kliknięcie w MenuItem "Close". Program jest wyłączany.
+     *
+     * @param event Parametry dotyczące kliknięcia.
+     */
+    @FXML
+    private void closeMenuItemClick(ActionEvent event) {
+        System.exit(0);
+    }
+
+    /**
      * Metoda obsługująca kliknięcie w MenuItem "Basic info (include
      * backspace)". Tryb wyświetlania obiektów klasy KeyboardClick jest
      * ustawiany na tryb listy z uwzględnieniem usunięć znaków.
@@ -494,16 +522,6 @@ public class MainWindowController implements Initializable {
         KeyboardClickTable.getTable(keyboardClickTableView, null);
         KeyboardClickTextArea.getTextAreaInc(keyboardClickTextArea, null);
         MouseScrollTable.getTable(mouseScrollTableView, null);
-    }
-
-    /**
-     * Metoda obsługująca kliknięcie w MenuItem "Close". Program jest wyłączany.
-     *
-     * @param event Parametry dotyczące kliknięcia.
-     */
-    @FXML
-    private void closeMenuItemClick(ActionEvent event) {
-        System.exit(0);
     }
 
     /**

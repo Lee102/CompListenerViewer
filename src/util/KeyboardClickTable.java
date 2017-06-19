@@ -30,7 +30,7 @@ public class KeyboardClickTable {
      * @param keyboardClickCollection Kolekcja danych.
      */
     public static void getTable(TableView keyboardClickTable, Collection<KeyboardClick> keyboardClickCollection) {
-        keyboardClickTable.getColumns().setAll(KeyboardClickTable.getKeyboardClickTimeColumn(), KeyboardClickTable.getKeyboardClickTextColumn());
+        keyboardClickTable.getColumns().setAll(KeyboardClickTable.getKeyboardClickTextColumn(), KeyboardClickTable.getKeyboardClickTimeColumn());
         if (keyboardClickCollection != null) {
             keyboardClickTable.setItems(KeyboardClickTable.getItems(keyboardClickCollection));
         } else {

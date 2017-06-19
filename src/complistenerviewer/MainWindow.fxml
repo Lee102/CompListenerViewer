@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complistenerviewer.MainWindowController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="complistenerviewer.MainWindowController">
    <children>
       <MenuBar>
         <menus>
@@ -23,6 +23,8 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#saveDataAsMenuItemClick" text="Save data as..." />
                   <MenuItem mnemonicParsing="false" onAction="#savePictureAsMenuItemClick" text="Save picture as..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#refreshDataMenuItemClick" text="Refresh data" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#closeMenuItemClick" text="Close" />
             </items>
@@ -55,9 +57,9 @@
       </MenuBar>
       <SplitPane dividerPositions="0.25" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" scaleShape="false" VBox.vgrow="ALWAYS">
         <items>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+               <items>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Workstations">
                            <font>
@@ -67,7 +69,7 @@
                         <TableView fx:id="workstationTableView" onMouseClicked="#workstationTableViewClick" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Workstation additional data">
                            <font>
@@ -77,56 +79,72 @@
                         <TableView fx:id="wokstationAdditionalDataTableView" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-               </children>
-            </HBox>
+               </items>
+            </SplitPane>
             <SplitPane dividerPositions="0.38" prefHeight="160.0" prefWidth="200.0" scaleShape="false">
               <items>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Windows">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TreeTableView fx:id="windowTreeTableView" onMouseClicked="#windowTreeTableViewClick" prefHeight="140.0" prefWidth="200.0" />
-                        <Label text="Mouse clicks">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TableView fx:id="mouseClickTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                        <Label fx:id="keyboardClickLabel" text="Keyboard clicks">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextArea fx:id="keyboardClickTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" />
-                        <HBox fx:id="keyboardClickAndMouseScrollHBox" alignment="TOP_CENTER" prefHeight="120.0" prefWidth="200.0" visible="false" VBox.vgrow="ALWAYS">
+                  <SplitPane dividerPositions="0.35" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                     <items>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="Keyboard clicks">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="keyboardClickTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Label text="Mouse scrolls">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TableView fx:id="mouseScrollTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-                                 </children>
-                              </VBox>
+                              <Label text="Windows">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TreeTableView fx:id="windowTreeTableView" onMouseClicked="#windowTreeTableViewClick" prefHeight="140.0" prefWidth="200.0" />
                            </children>
-                        </HBox>
-                     </children>
-                  </VBox>
+                        </VBox>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                          <items>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label text="Mouse clicks">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="mouseClickTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label fx:id="keyboardClickLabel" text="Keyboard clicks">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="keyboardClickTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" />
+                                    <HBox fx:id="keyboardClickAndMouseScrollHBox" alignment="TOP_CENTER" prefHeight="120.0" prefWidth="200.0" visible="false" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Keyboard clicks">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TableView fx:id="keyboardClickTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Label text="Mouse scrolls">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TableView fx:id="mouseScrollTableView" prefHeight="120.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                          </items>
+                        </SplitPane>
+                     </items>
+                  </SplitPane>
                   <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
                      <content>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
